@@ -1,70 +1,59 @@
 package com.basejava.testjava;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedList;
-
 public class ArrayStorage {
 
-    Resume[] storage = new Resume[10];
+    private Resume[] storage = new Resume[10000];
+    private int countSize = 0;
 
     public void save(Resume resume) {
 
-        for(int i = 0; i <= 9999; i++) {
+        for(int i = 0; i < 10000; i++) {
             if(storage[i] == null) {
                 storage[i] = resume;
+                countSize++;
                 break;
             }
         }
     }
 
     public Resume get(String name) {
-        Resume two = null;
-        for(Resume one : storage) {
-            if(one !=null && one.name.equals(name)){ two=one; }
-        } return two;
+        Resume one = null;
+        for(int i = 0; i < countSize; i++) {
+            if(storage[i].name.equals(name)) { one = storage[i]; }
+        }
+        return one;
     }
 
     public void delete(Resume resume) {
-        ArrayList<Resume> list = new ArrayList<>();
-        for(Resume one : storage) {
-            if(one != null) { list.add(one);}
+        Resume[] resArr = new Resume[countSize];
+        for(int i = 0; i < countSize; i++) {
+            resArr[i] = storage[i];
         }
-        Iterator<Resume> iterator = list.iterator();
-
-        while(iterator.hasNext()) {
-            if(iterator.next().equals(resume)) {
-                iterator.remove();
+        for(int j = 0; j <= countSize - 1; j++) {
+            if(resArr[j].equals(resume)) {
+                System.arraycopy(resArr, j + 1, resArr, j, countSize - 1 - j);
             }
         }
-        list.toArray(storage);
-    }
+        resArr[resArr.length - 1] = null;
 
+        System.arraycopy(resArr, 0, storage, 0, resArr.length);
+        countSize--;
+
+    }
     public int size() {
-        ArrayList<Resume> list = new ArrayList<>();
-        for(Resume one : storage) {
-            if(one != null) {list.add(one);}
-        }
-        int size = list.size();
-        return size;
-    }
-
-    public int sizeFull() {
-        return storage.length;
+        return countSize;
     }
 
     public void clear() {
-        Arrays.fill(storage, null);
+        for(int i = 0; i < countSize; i++) {
+            storage[i] = null;
+        }
+        countSize = 0;
     }
 
     Resume[] getAll() {
-        ArrayList<Resume> list = new ArrayList<>();
-        for(Resume one : storage) {
-            if(one != null) {list.add(one);}
-        }
-        Resume[] resArr = new Resume[list.size()];
-        list.toArray(resArr);
+        Resume[] resArr = new Resume[countSize];
+        System.arraycopy(storage, 0, resArr, 0, countSize);
         return resArr;
 
     }

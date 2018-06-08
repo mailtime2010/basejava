@@ -26,9 +26,8 @@ public class ArrayStorage {
 
     public void delete(Resume resume) {
         Resume[] resArr = new Resume[countSize];
-        for(int i = 0; i < countSize; i++) {
-            resArr[i] = storage[i];
-        }
+        System.arraycopy(storage, 0, resArr, 0, countSize);
+
         for(int j = 0; j <= countSize - 1; j++) {
             if(resArr[j].equals(resume)) {
                 System.arraycopy(resArr, j + 1, resArr, j, countSize - 1 - j);

@@ -11,7 +11,7 @@ public class MainTestArrayStorage {
         Resume resume2 = new Resume("2");
         Resume resume3 = new Resume("3");
 //****************************
-        System.out.println("Максим, притормози, а то от кода ничего не останется ))")
+        System.out.println("Максим, тебе нужно отдохнуть, а то от кода ничего не останется ))");
         System.out.println();
         System.out.print("SAVE(): ");
         storage.save(resume);
@@ -58,6 +58,6 @@ public class MainTestArrayStorage {
         Resume[] fourStor = storage.getAll();
         System.out.println("GET_ALL[элементы массива]: " + Arrays.toString(fourStor));
         System.out.println();
-        System.out.println("А как хорошо же всё начилось :/" );
+        System.out.println("А как хорошо же всё начиналось :/" );
     }
 }

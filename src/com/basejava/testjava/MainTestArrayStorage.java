@@ -37,7 +37,7 @@ public class MainTestArrayStorage {
         storage.save(resume2);
         storage.save(resume3);
         System.out.println("Добавляю в массив " + storage.size() + " резюме...");
-        System.out.println("Максим,ну улыбнись, резюме то добавлены в массив.)");
+        System.out.println("Максим,это испытание огнём, хоть резюме и добавлены в массив.)");
         System.out.println("В массиве снова: " + storage.size() + " резюме.");
         Resume[] threeStor = storage.getAll();
         System.out.println("GET_All[элементы массива]: " + Arrays.toString(threeStor));
@@ -45,18 +45,18 @@ public class MainTestArrayStorage {
 //*****************************
         System.out.print("GET(): ");
         System.out.println("Получение резюме " + storage.get("2") + "...");
-        System.out.println("Ура! Мы, Максим, получили ваше резюме: " + storage.get("2") + ", пожалуйста, ПОДпишитесь.)");
+        System.out.println("Мы получили ваше резюме: " + storage.get("2") + ", хотя уже не уверены нужно или оно нам)");
         System.out.println();
 //*****************************
         System.out.print("DELETE(): ");
         System.out.println("Удаление резюме: " + resume2 + "...");
         storage.delete(resume1);
-        System.out.println("К сожалению, Максим, ваше резюме " + resume2 + ", удалено из массива.");
+        System.out.println("К сожалению, Ваше резюме " + resume2 + ", удалено из массива.");
         System.out.println("В массиве: " + storage.size() + " резюме.");
 //*****************************
         Resume[] fourStor = storage.getAll();
         System.out.println("GET_ALL[элементы массива]: " + Arrays.toString(fourStor));
         System.out.println();
-        System.out.println("Когда я уже получу допуск в космонавты?)");
+        System.out.println("Видно я ни когда не стану космонавтом :/" );
     }
 }

@@ -9,7 +9,7 @@ public class ArrayStorage {
 
     public void save(Resume resume) {
 
-        if(countSize < 10000 && countSize >= 0) {
+        if(countSize < 10000) {
             storage[countSize] = resume;
             countSize++;
         }
@@ -26,25 +26,23 @@ public class ArrayStorage {
         for(int i = 0; i < countSize; i++) {
             if(storage[i].equals(resume)) {
                 storage[i] = storage[countSize - 1];
+                countSize--;
+                break;
             }
         }
-        countSize--;
-
     }
+
     public int size() {
         return countSize;
     }
 
     public void clear() {
-        Arrays.fill(storage, 0, countSize - 1, null);
+        Arrays.fill(storage, 0, countSize, null);
         countSize = 0;
     }
 
     Resume[] getAll() {
-        if(countSize != 0) {
-            Resume[] resArr = Arrays.copyOfRange(storage, 0, countSize);
-            return resArr;
-        } else {return null;}
+        return countSize != 0 ? Arrays.copyOfRange(storage, 0, countSize) : null;
     }
 
 

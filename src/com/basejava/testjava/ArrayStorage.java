@@ -26,6 +26,7 @@ public class ArrayStorage {
         for(int i = 0; i < countSize; i++) {
             if(storage[i].equals(resume)) {
                 storage[i] = storage[countSize - 1];
+                storage[countSize-1] = null;
                 countSize--;
                 break;
             }
@@ -42,7 +43,7 @@ public class ArrayStorage {
     }
 
     Resume[] getAll() {
-        return countSize != 0 ? Arrays.copyOfRange(storage, 0, countSize) : null;
+        return Arrays.copyOfRange(storage, 0, countSize);
     }
 
 

@@ -7,36 +7,59 @@ public class ArrayStorage {
     private Resume[] storage = new Resume[10000];
     private int countSize = 0;
 
-    public void save(Resume resume) {
+    public void update(Resume resumeDel, Resume resumeSet) {
 
-        if(countSize < 10000) {
-            storage[countSize] = resume;
-            countSize++;
-        } else {System.out.println("Вы не можете добавить резюме. Массив полностью заполненен.");}
-    }
-
-    public Resume get(String name) {
-        if(countSize != 0) {
+        if(Arrays.asList(storage).contains(resumeSet)) {
+            System.out.println("Добавление " + resumeSet + " не возможно. Это резюме уже существует.");
+        } else {
             for(int i = 0; i < countSize; i++) {
-                if(storage[i].name.equals(name)) { return storage[i]; }
+                if(storage[i].equals(resumeDel)) {
+                    storage[i] = resumeSet;
+                    System.out.println(resumeDel + " Обновлено на " + resumeSet + '.');
+                }
             }
         }
-        else System.out.println("Вы не можете получить резюме.Массив резюме пустой.");
+    }
+
+    public void save(Resume resume) {
+
+        if(Arrays.asList(storage).contains(resume)) {
+            System.out.println("Добавление " + resume + " не возможно. Это резюме уже существует.");
+        } else {
+            storage[countSize] = resume;
+            countSize++;
+            System.out.println("Резюме " + resume + " добавлено.");
+        }
+    }
+
+    public Resume get(String uuid) {
+
+        for(int i = 0; i < countSize; i++) {
+            if(storage[i].uuid.equals(uuid)) {
+                System.out.println("Резюме " + uuid + " получено.");
+                return storage[i]; }
+        }
+        System.out.println("Получение резюме "+ uuid +" невозможно. Это резюме не существует.");
         return null;
     }
 
     public void delete(Resume resume) {
-       if(countSize !=0) {
-           for(int i = 0; i < countSize; i++) {
-               if(storage[i].equals(resume)) {
-                   storage[i] = storage[countSize - 1];
-                   storage[countSize - 1] = null;
-                   countSize--;
-                   break;
-               }
-           }
-       } else System.out.println("Вы не можете удалить резюме.Массив резюме пустой.");
+        if(!(Arrays.asList(storage).contains(resume))) {
+            System.out.println("Удаление " + resume + " не возможно. Это резюме не существует.");
+        } else {
+            for(int i = 0; i < countSize; i++) {
+                if(storage[i].equals(resume)) {
+                    storage[i] = storage[countSize - 1];
+                    storage[countSize - 1] = null;
+                    countSize--;
+                    System.out.println("Резюме " + resume + " удалено.");
+                    break;
+                }
+            }
+
+        }
     }
+
 
     public int size() {
         return countSize;

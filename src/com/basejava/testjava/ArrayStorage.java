@@ -7,17 +7,14 @@ public class ArrayStorage {
     private Resume[] storage = new Resume[10000];
     private int countSize = 0;
 
-    public void update(Resume resumeDel, Resume resumeSet) {
-
-        if(Arrays.asList(storage).contains(resumeSet)) {
-            System.out.println("Добавление " + resumeSet + " не возможно. Это резюме уже существует.");
-        } else {
-            for(int i = 0; i < countSize; i++) {
-                if(storage[i].equals(resumeDel)) {
-                    storage[i] = resumeSet;
-                    System.out.println(resumeDel + " Обновлено на " + resumeSet + '.');
-                }
+    public void update(Resume resume) {
+        for(int i = 0; i < countSize; i++) {
+            if(storage[i].uuid.equals(resume.uuid)) {
+                storage[i] = resume;
+                System.out.println(resume + " резюме обновлено.");
+                break;
             }
+            if(i == countSize - 1) {System.out.println(resume.uuid + " резюме не существует.");}
         }
     }
 
@@ -45,23 +42,21 @@ public class ArrayStorage {
         return null;
     }
 
-    public void delete(Resume resume) {
-        if(!(Arrays.asList(storage).contains(resume))) {
-            System.out.println("Удаление " + resume + " не возможно. Это резюме не существует.");
-        } else {
-            for(int i = 0; i < countSize; i++) {
-                if(storage[i].equals(resume)) {
-                    storage[i] = storage[countSize - 1];
-                    storage[countSize - 1] = null;
-                    countSize--;
-                    System.out.println("Резюме " + resume + " удалено.");
-                    break;
-                }
-            }
+    public void delete(String uuid) {
 
+        for(int i = 0; i < countSize; i++) {
+            if(storage[i].uuid.equals(uuid)) {
+                storage[i] = storage[countSize - 1];
+                storage[countSize - 1] = null;
+                countSize--;
+                System.out.println("Резюме " + uuid + " удалено.");
+                break;
+            }
+            if(i == countSize - 1) {
+                System.out.println("Удаление " + uuid + " не возможно. Это резюме не существует.");
+            }
         }
     }
-
 
     public int size() {
         return countSize;

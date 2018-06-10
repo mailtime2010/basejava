@@ -1,12 +1,12 @@
 package com.basejava.testjava;
 
 public class Resume {
-        String name;
+        String uuid;
 
         public String toString(){
-            return  name;
+            return  uuid;
         }
-        public Resume(String name){
-            this.name = name;
+        public Resume(String uuid){
+            this.uuid = uuid;
         }
 }

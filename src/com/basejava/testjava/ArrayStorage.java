@@ -22,14 +22,15 @@ public class ArrayStorage {
     }
 
     public void save(Resume resume) {
-
-        if(Arrays.asList(storage).contains(resume)) {
-            System.out.println("Добавление " + resume + " не возможно. Это резюме уже существует.");
-        } else {
-            storage[countSize] = resume;
-            countSize++;
-            System.out.println("Резюме " + resume + " добавлено.");
-        }
+        if(countSize < 1000) {
+            if(Arrays.asList(storage).contains(resume)) {
+                System.out.println("Добавление " + resume + " не возможно. Это резюме уже существует.");
+            } else {
+                storage[countSize] = resume;
+                countSize++;
+                System.out.println("Резюме " + resume + " добавлено.");
+            }
+        } else { System.out.println("Resume can't add to array. Array is full."); }
     }
 
     public Resume get(String uuid) {
@@ -37,9 +38,10 @@ public class ArrayStorage {
         for(int i = 0; i < countSize; i++) {
             if(storage[i].uuid.equals(uuid)) {
                 System.out.println("Резюме " + uuid + " получено.");
-                return storage[i]; }
+                return storage[i];
+            }
         }
-        System.out.println("Получение резюме "+ uuid +" невозможно. Это резюме не существует.");
+        System.out.println("Получение резюме " + uuid + " невозможно. Это резюме не существует.");
         return null;
     }
 

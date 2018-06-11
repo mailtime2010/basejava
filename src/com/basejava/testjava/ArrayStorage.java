@@ -8,28 +8,33 @@ public class ArrayStorage {
     private int countSize = 0;
 
     public void update(Resume resume) {
-        if(index(resume.uuid) != -1) {
-            storage[index(resume.uuid)] = resume;
+        int index = index(resume.uuid);
+        if(index != -1) {
+            storage[index] = resume;
             System.out.println("Резюме " + resume + " обновлено.");
-        } else {System.out.println("Резюме " + resume.uuid + " не существует.");}
+        } else {
+            System.out.println("Резюме " + resume.uuid + " не существует.");}
     }
 
     public void save(Resume resume) {
         if(countSize < storage.length - 1) {
-            if(index(resume.uuid) != -1) {
+            int index = index(resume.uuid);
+            if(index != -1) {
                 System.out.println("Добавление " + resume + " не возможно. Это резюме уже существует.");
             } else {
                 storage[countSize] = resume;
                 countSize++;
                 System.out.println("Резюме " + resume + " добавлено.");
             }
-        } else { System.out.println("Resume can't add to array. Array is full."); }
+        } else {
+            System.out.println("Resume can't add to array. Array is full."); }
     }
 
     public Resume get(String uuid) {
-        if(index(uuid) != -1) {
+        int index = index(uuid);
+        if(index != -1) {
             System.out.println("Резюме " + uuid + " получено.");
-            return storage[index(uuid)];
+            return storage[index];
         } else {
             System.out.println("Получение резюме " + uuid + " невозможно. Это резюме не существует.");
             return null;
@@ -37,8 +42,9 @@ public class ArrayStorage {
     }
 
     public void delete(String uuid) {
-        if(index(uuid) != -1) {
-            storage[index(uuid)] = storage[countSize - 1];
+        int index = index(uuid);
+        if(index != -1) {
+            storage[index] = storage[countSize - 1];
             storage[countSize - 1] = null;
             countSize--;
             System.out.println("Резюме " + uuid + " удалено.");

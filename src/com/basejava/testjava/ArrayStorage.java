@@ -13,7 +13,8 @@ public class ArrayStorage {
             storage[index] = resume;
             System.out.println("Резюме " + resume + " обновлено.");
         } else {
-            System.out.println("Резюме " + resume.uuid + " не существует.");}
+            System.out.println("Резюме " + resume.uuid + " не существует.");
+        }
     }
 
     public void save(Resume resume) {
@@ -27,7 +28,8 @@ public class ArrayStorage {
                 System.out.println("Резюме " + resume + " добавлено.");
             }
         } else {
-            System.out.println("Resume can't add to array. Array is full."); }
+            System.out.println("Resume can't add to array. Array is full.");
+        }
     }
 
     public Resume get(String uuid) {
@@ -66,7 +68,7 @@ public class ArrayStorage {
         return Arrays.copyOfRange(storage, 0, countSize);
     }
 
-    public int index(String uuid) {
+    private int index(String uuid) {
         for(int i = 0; i <= countSize - 1; i++) {
             if(storage[i].uuid.equals(uuid)) { return i; }
         }

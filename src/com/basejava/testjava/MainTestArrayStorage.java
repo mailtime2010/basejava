@@ -47,8 +47,8 @@ public class MainTestArrayStorage {
         System.out.println();
 //*****************************
         System.out.print("GET(): ");
-        System.out.println("Получение резюме " + resume3 + "...");
-        storage.get("3");
+        System.out.println("Получение резюме " + resume4 + "...");
+        storage.get("4");
         System.out.println();
 //*****************************
         System.out.print("GET(): ");

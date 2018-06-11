@@ -8,7 +8,7 @@ public class ArrayStorage {
     private int countSize = 0;
 
     public void update(Resume resume) {
-        if(index(resume.uuid) != -1) {//
+        if(index(resume.uuid) != -1) {
             storage[index(resume.uuid)] = resume;
             System.out.println("Резюме " + resume + " обновлено.");
         } else {System.out.println("Резюме " + resume.uuid + " не существует.");}
@@ -16,7 +16,6 @@ public class ArrayStorage {
 
     public void save(Resume resume) {
         if(countSize < storage.length - 1) {
-
             if(index(resume.uuid) != -1) {
                 System.out.println("Добавление " + resume + " не возможно. Это резюме уже существует.");
             } else {
@@ -38,7 +37,6 @@ public class ArrayStorage {
     }
 
     public void delete(String uuid) {
-
         if(index(uuid) != -1) {
             storage[index(uuid)] = storage[countSize - 1];
             storage[countSize - 1] = null;
@@ -48,7 +46,6 @@ public class ArrayStorage {
             System.out.println("Удаление " + uuid + " не возможно. Это резюме не существует.");
         }
     }
-
 
     public int size() {
         return countSize;

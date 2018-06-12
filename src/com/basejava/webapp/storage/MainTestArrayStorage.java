@@ -65,11 +65,16 @@ public class MainTestArrayStorage {
 
     public void ResumeAll() {
 
-        Resume resume = new Resume("0");
-        Resume resume1 = new Resume("1");
-        Resume resume2 = new Resume("2");
-        Resume resume3 = new Resume("3");
-        Resume resume4 = new Resume("4");
+        Resume resume = new Resume();
+        resume.setUuid("0");
+        Resume resume1 = new Resume();
+        resume.setUuid("1");
+        Resume resume2 = new Resume();
+        resume.setUuid("2");
+        Resume resume3 = new Resume();
+        resume.setUuid("3");
+        Resume resume4 = new Resume();
+        resume.setUuid("4");
 //****************************
         System.out.println();
         setSave(resume1);

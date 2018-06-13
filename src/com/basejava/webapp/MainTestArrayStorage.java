@@ -6,64 +6,64 @@ import com.basejava.webapp.storage.ArrayStorage;
 import java.util.Arrays;
 
 public class MainTestArrayStorage {
-    ArrayStorage storage = new ArrayStorage();
+     private ArrayStorage storage = new ArrayStorage();
 
-    public static void aroundSave(Resume oneResume) {
+    private static void aroundSave(Resume oneResume) {
         System.out.print("SAVE(): ");
         System.out.println("Добавление резюме " + oneResume + "...");
     }
 
-    public static void aroundUpdate(Resume oneResume) {
+    private static void aroundUpdate(Resume oneResume) {
         System.out.print("UPDATE(): ");
         System.out.println("Обновление резюме " + oneResume + "...");
     }
 
-    public static void aroundGet(Resume oneResume) {
+    private static void aroundGet(Resume oneResume) {
         System.out.print("GET(): ");
         System.out.println("Получение резюме " + oneResume + "...");
     }
 
-    public static void aroundDelete(Resume oneResume) {
+    private static void aroundDelete(Resume oneResume) {
         System.out.print("DELETE(): ");
         System.out.println("Удаление резюме: " + oneResume + "...");
     }
 
-    public static void aroundClear() {
+    private static void aroundClear() {
         System.out.print("CLEAR(): ");
         System.out.println("Очистка массива...");
     }
 
-    public static void resumeGetAll(ArrayStorage oneStorage) {
+    private static void resumeGetAll(ArrayStorage oneStorage) {
         Resume[] Store = oneStorage.getAll();
         System.out.println("GET_All[элементы массива]: " + Arrays.toString(Store));
         System.out.println();
     }
 
-    public void setSave(Resume oneResume) {
+    private void setSave(Resume oneResume) {
         aroundSave(oneResume);
         storage.save(oneResume);
         resumeGetAll(storage);
     }
 
-    public void setUpdate(Resume oneResume) {
+    private void setUpdate(Resume oneResume) {
         aroundUpdate(oneResume);
         storage.update(oneResume);
         resumeGetAll(storage);
     }
 
-    public void setGet(Resume oneResume) {
+    private void setGet(Resume oneResume) {
         aroundGet(oneResume);
-        storage.get(oneResume.getUuid());
+        oneResume = storage.get(oneResume.getUuid());
         System.out.println();
     }
 
-    public void setDelete(Resume oneResume) {
+    private void setDelete(Resume oneResume) {
         aroundDelete(oneResume);
         storage.delete(oneResume.getUuid());
         resumeGetAll(storage);
     }
 
-    public void setClear(Resume oneResume) {
+    private void setClear(Resume oneResume) {
         aroundClear();
         storage.clear();
         System.out.println("В массиве: " + storage.size() + " резюме.");

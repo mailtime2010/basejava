@@ -11,10 +11,11 @@ public class Resume {
         this.uuid = uuid;
     }
 
-        public String toString(){
-            return  uuid;
-        }
-        public Resume(String uuid){
-            this.uuid = uuid;
-        }
+    public String toString() {
+        return uuid;
+    }
+
+    public Resume(String uuid) {
+        this.uuid = uuid;
+    }
 }

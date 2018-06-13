@@ -14,8 +14,4 @@ public class Resume {
     public String toString() {
         return uuid;
     }
-
-    public Resume(String uuid) {
-        this.uuid = uuid;
-    }
 }

@@ -1,6 +1,7 @@
-package com.basejava.webapp.storage;
+package com.basejava.webapp;
 
 import com.basejava.webapp.model.Resume;
+import com.basejava.webapp.storage.ArrayStorage;
 
 import java.util.Arrays;
 
@@ -31,7 +32,7 @@ public class MainTestArrayStorage {
         System.out.println("Очистка массива...");
     }
 
-    public static  void aroundGetAll(ArrayStorage oneStorage) {
+    public static  void resumeGetAll(ArrayStorage oneStorage) {
         Resume[] Store = oneStorage.getAll();
         System.out.println("GET_All[элементы массива]: " + Arrays.toString(Store));
         System.out.println();
@@ -39,42 +40,37 @@ public class MainTestArrayStorage {
     public void setSave(Resume resume){
         aroundSave(resume);
         storage.save(resume);
-        aroundGetAll(storage);
+        resumeGetAll(storage);
     }
     public void setUpdate(Resume resume){
         aroundUpdate(resume);
         storage.update(resume);
-        aroundGetAll(storage);
+        resumeGetAll(storage);
     }
     public void setGet(Resume resume){
         aroundGet(resume);
-        storage.get("4");
+        storage.get(resume.getUuid());
         System.out.println();
     }
     public void setDelete(Resume resume){
         aroundDelete(resume);
         storage.delete(resume.getUuid());
-        aroundGetAll(storage);
+        resumeGetAll(storage);
     }
     public void setClear(Resume resume){
         aroundClear();
         storage.clear();
         System.out.println("В массиве: " + storage.size() + " резюме.");
-        aroundGetAll(storage);
+        resumeGetAll(storage);
     }
 
     public void ResumeAll() {
 
-        Resume resume = new Resume();
-        resume.setUuid("0");
-        Resume resume1 = new Resume();
-        resume.setUuid("1");
-        Resume resume2 = new Resume();
-        resume.setUuid("2");
-        Resume resume3 = new Resume();
-        resume.setUuid("3");
-        Resume resume4 = new Resume();
-        resume.setUuid("4");
+        Resume resume = new Resume("0");
+        Resume resume1 = new Resume("1");
+        Resume resume2 = new Resume("2");
+        Resume resume3 = new Resume("3");
+        Resume resume4 = new Resume("4");
 //****************************
         System.out.println();
         setSave(resume1);

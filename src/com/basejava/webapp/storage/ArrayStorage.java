@@ -10,7 +10,7 @@ public class ArrayStorage {
     private int countSize = 0;
 
     public void save(Resume resume) {
-        if(countSize < storage.length - 1) {
+        if(countSize < storage.length) {
             int index = index(resume.getUuid());
             if(index != -1) {
                 System.out.println("Резюме " + resume + " уже существует.");
@@ -62,12 +62,8 @@ public class ArrayStorage {
         countSize = 0;
     }
 
-    Resume[] getAll() {
+    public Resume[] getAll() {
         return Arrays.copyOfRange(storage, 0, countSize);
-    }
-
-    public int size() {
-        return countSize;
     }
 
     private int index(String uuid) {
@@ -75,5 +71,9 @@ public class ArrayStorage {
             if(storage[i].getUuid().equals(uuid)) { return i; }
         }
         return -1;
+    }
+
+    public int size() {
+        return countSize;
     }
 }

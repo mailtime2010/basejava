@@ -4,78 +4,84 @@ import com.basejava.webapp.model.Resume;
 
 import java.util.Arrays;
 
-public class ArrayStorage {
+/**
+ * Array based storage for Resumes
+ */
+public class ArrayStorage implements Storage{
+    private static final int STORAGE_LIMIT = 10000;
 
-    private Resume[] storage = new Resume[10000];
-    private int countSize = 0;
+    private Resume[] storage = new Resume[STORAGE_LIMIT];
+    private int size = 0;
 
-    public void save(Resume resume) {
-        if(countSize < storage.length) {
-            int index = index(resume.getUuid());
-            if(index != -1) {
-                System.out.println("Резюме " + resume + " уже существует.");
-            } else {
-                storage[countSize] = resume;
-                countSize++;
-                System.out.println("Резюме " + resume + " добавлено.");
-            }
+    @Override
+    public void clear() {
+        Arrays.fill(storage, 0, size, null);
+        size = 0;
+    }
+
+    @Override
+    public void update(Resume r) {
+        int index = getIndex(r.getUuid());
+        if(index == -1) {
+            System.out.println("Resume " + r.getUuid() + " not exist");
         } else {
-            System.out.println("Resume can't add to array. Array is full.");
+            storage[index] = r;
         }
     }
 
-    public void update(Resume resume) {
-        int index = index(resume.getUuid());
-        if(index != -1) {
-            storage[index] = resume;
-            System.out.println("Резюме " + resume + " обновлено.");
+    @Override
+    public void save(Resume r) {
+        if(getIndex(r.getUuid()) != -1) {
+            System.out.println("Resume " + r.getUuid() + " already exist.");
+        } else if(size >= storage.length) {
+            System.out.println("Storage overflow.");
         } else {
-            System.out.println("Резюме " + resume.getUuid() + " не существует.");
+            storage[size] = r;
+            size++;
+            System.out.println("Resume " + r.getUuid() + " was added.");
         }
     }
 
+    @Override
     public Resume get(String uuid) {
-        int index = index(uuid);
-        if(index != -1) {
-            System.out.println("Резюме " + uuid + " получено.");
-            return storage[index];
-        } else {
-            System.out.println("Резюме " + uuid + " не существует.");
+        int index = getIndex(uuid);
+        if(index == -1) {
+            System.out.println("Resume " + uuid + " not exist.");
             return null;
         }
+        System.out.println("Resume " + uuid + " was returned.");
+        return storage[index];
     }
 
+    @Override
     public void delete(String uuid) {
-        int index = index(uuid);
-        if(index != -1) {
-            storage[index] = storage[countSize - 1];
-            storage[countSize - 1] = null;
-            countSize--;
-            System.out.println("Резюме " + uuid + " удалено.");
+        int index = getIndex(uuid);
+        if(index == -1) {
+            System.out.println("Resume " + uuid + " not exist.");
         } else {
-            System.out.println("Резюме " + uuid + " не существует.");
+            storage[index] = storage[size - 1];
+            storage[size - 1] = null;
+            size--;
+            System.out.println("Resume " + uuid + " was deleted.");
         }
     }
 
-    public void clear() {
-        Arrays.fill(storage, 0, countSize, null);
-        countSize = 0;
-    }
-
+    @Override
     public Resume[] getAll() {
-        return Arrays.copyOfRange(storage, 0, countSize);
+        return Arrays.copyOfRange(storage, 0, size);
     }
 
-    private int index(String uuid) {
-        for(int i = 0; i <= countSize - 1; i++) {
-            if(storage[i].getUuid().equals(uuid)) {
+    @Override
+    public int size() {
+        return size;
+    }
+
+    private int getIndex(String uuid) {
+        for(int i = 0; i < size; i++) {
+            if(uuid.equals(storage[i].getUuid())) {
                 return i;
             }
         }
         return -1;
-    }
-
-    public int size() {
-        return countSize;
     }
 }

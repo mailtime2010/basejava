@@ -1,7 +1,15 @@
 package com.basejava.webapp.model;
 
+import java.util.UUID;
+
 public class Resume implements Comparable<Resume>{
-    private String uuid;
+    private final String uuid;
+
+    public Resume(String uuid) {this.uuid = uuid;}
+
+    public Resume() {
+        this(UUID.randomUUID().toString());
+    }
 
     public String getUuid() {
         return uuid;
@@ -20,10 +28,6 @@ public class Resume implements Comparable<Resume>{
     @Override
     public int hashCode() {
         return uuid.hashCode();
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
     }
 
     public String toString() {

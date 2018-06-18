@@ -5,7 +5,7 @@ package com.basejava.webapp;
  * Test for com.basejava.webapp.storage;
  */
 public class MainArray {
-    /*private final static ArrayStorage ARRAY_STORAGE = new ArrayStorage();
+ /*   private final static Storage ARRAY_STORAGE = new ArrayStorage();
 
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -29,14 +29,12 @@ public class MainArray {
                     System.out.println(ARRAY_STORAGE.size());
                     break;
                 case "save":
-                    r = new Resume();
-                    r.setUuid(uuid);
+                    r = new Resume(uuid);
                     ARRAY_STORAGE.save(r);
                     printAll();
                     break;
                 case "update":
-                    r = new Resume();
-                    r.setUuid(uuid);
+                    r = new Resume(uuid);
                     ARRAY_STORAGE.update(r);
                     printAll();
                     break;

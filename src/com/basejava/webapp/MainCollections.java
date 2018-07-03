@@ -48,7 +48,7 @@ public class MainCollections {
 
         // Bad!
         for (String uuid : map.keySet()) {
-            System.out.println(map.get(uuid));
+           System.out.println(map.get(uuid));
         }
 
         for (Map.Entry<String,Resume> entry : map.entrySet()) {

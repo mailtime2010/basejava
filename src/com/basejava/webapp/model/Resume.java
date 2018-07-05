@@ -1,11 +1,16 @@
 package com.basejava.webapp.model;
 
+import java.security.SecureRandom;
+import java.util.EnumMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
 public class Resume implements Comparable<Resume> {
     private final String uuid;
     private final String fullName;
+    public final Map<ContactType,String> contacts = new EnumMap<>(ContactType.class);
+    public final Map<SectionType,String> section = new EnumMap<>(SectionType.class);
 
     public Resume(String fullName) {
         this(UUID.randomUUID().toString(), fullName);

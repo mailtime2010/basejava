@@ -1,6 +1,5 @@
 package com.basejava.webapp.model;
 
-import java.security.SecureRandom;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Objects;

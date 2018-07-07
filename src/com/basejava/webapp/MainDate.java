@@ -18,6 +18,17 @@ public class MainDate {
         Date date = new Date();
         System.out.println(date);//the same
         System.out.println("Differ: " + (System.currentTimeMillis() - start));
+        System.out.println();
+
+        LocalTime late = LocalTime.of(23, 59, 59);
+        System.out.println(late);
+        System.out.println();
+
+        ZoneId zone1 = ZoneId.of("Europe/Berlin");
+        ZoneId zone2 = ZoneId.of("Brazil/East");
+        System.out.println(zone1.getRules());
+        System.out.println(zone2.getRules());
+        System.out.println();
 
         Calendar calendar = Calendar.getInstance();
         //System.out.println(calendar);

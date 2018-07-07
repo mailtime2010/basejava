@@ -1,9 +1,6 @@
 package com.basejava.webapp;
 
-import java.io.File;
-import java.io.FileFilter;
-import java.io.IOException;
-import java.io.PrintStream;
+import java.io.*;
 
 public class MainFile {
     public static void findFiles(File file, FileFilter filter, PrintStream output) throws IOException {
@@ -27,7 +24,7 @@ public class MainFile {
 
             @Override
             public boolean accept(File file) {
-                return (file.getName().indexOf(mask) != -1) ? true : false;
+                return file.getName().contains(mask);
             }
         }
         File pathFile = new File(".");
@@ -39,6 +36,29 @@ public class MainFile {
             e.printStackTrace();
         }
         System.out.println("work finished");
-    }
+        System.out.println();
 
+        String filePath = "./.gitignore";
+        File file = new File(filePath);
+        try {
+            System.out.println(file.getCanonicalPath());
+        } catch(IOException e) {
+            throw new RuntimeException("Error", e);
+        }
+        File dir = new File("F:/GS/basejava/src/com/basejava/webapp");
+        System.out.println(dir.isDirectory());
+        String[] list = dir.list();
+        if(list != null) {
+            for(String name : list) {
+                System.out.println(name);
+            }
+        }
+        try(FileInputStream fis = new FileInputStream(filePath)) {
+            System.out.println(fis.read());
+
+        } catch(IOException e) {
+            throw new RuntimeException("Error",e);
+        }
+
+    }
 }

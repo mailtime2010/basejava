@@ -14,7 +14,9 @@ public class MainFile {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
+        //*****************************
+        //File1
         class NameFilter implements FileFilter {
             private String mask;
 
@@ -37,7 +39,8 @@ public class MainFile {
         }
         System.out.println("work finished");
         System.out.println();
-
+        //*****************************
+        //File2
         String filePath = "./.gitignore";
         File file = new File(filePath);
         try {
@@ -57,8 +60,30 @@ public class MainFile {
             System.out.println(fis.read());
 
         } catch(IOException e) {
-            throw new RuntimeException("Error",e);
+            throw new RuntimeException("Error", e);
         }
+        //*****************************
+        //AutoCloseable
+        class X implements AutoCloseable {
+            private String name;
 
+            public X(String name) {
+                this.name = name;
+                System.err.println("new: " + name);
+            }
+
+            @Override
+            public void close() throws Exception {
+                System.err.println("close: " + name);
+            }
+        }
+        try(X x0 = new X("0"); X x1 = new X("1"); X x2 = new X("2")) {
+            System.err.println("try");
+            throw new Exception();
+        } catch(Exception e) {
+            System.err.println("catch");
+        } finally {
+            System.err.println("finally");
+        }
     }
 }

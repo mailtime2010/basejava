@@ -25,6 +25,16 @@ public class MainDate {
         System.out.println(calendar.getTime());//the same
         System.out.println();
 
+        SimpleDateFormat sdfAmerica = new SimpleDateFormat("dd-M-yyyy hh:mm:ss a");
+        TimeZone tzInAmerica = TimeZone.getTimeZone("America/New_York");
+        //sdfAmerica.setTimeZone(TimeZone.getTimeZone("America/New_York"));
+        sdfAmerica.setTimeZone(tzInAmerica);
+        sdfAmerica.format(calendar.getTime());
+        int hour = calendar.get(Calendar.HOUR); // 12 hour clock
+        int hourOfDay = calendar.get(Calendar.HOUR_OF_DAY); // 24 hour clock
+        System.out.println(hourOfDay +" " + hour);
+        System.out.println();
+
         LocalDate ld = LocalDate.now();
         System.out.println(ld);
         LocalTime lt = LocalTime.now();

@@ -3,18 +3,21 @@ package com.basejava.webapp;
 import java.io.*;
 
 public class MainFile {
-    public static void findFiles(File file, FileFilter filter, PrintStream output) throws IOException {
-        if(file.isDirectory()) {
-            File[] list = file.listFiles();
-            for(int i = list.length; --i >= 0; ) {
-                findFiles(list[i], filter, output);
+    public static void printDirectory(File dir) {
+        File[] files = dir.listFiles();
+        if(files != null) {
+            for(File file : files) {
+                if(file.isFile()) {
+                    System.out.println("File: " + file.getName());
+                } else if(file.isDirectory()) {
+                    System.out.println("Directory: " + file.getName());
+                    printDirectory(file);
+                }
             }
-        } else {
-            if(filter.accept(file)) output.println("\t" + file.getCanonicalPath());
         }
     }
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         //*****************************
         //File1
         class NameFilter implements FileFilter {
@@ -39,7 +42,7 @@ public class MainFile {
         }
         System.out.println("work finished");
         System.out.println();
-        //*****************************
+        // *****************************
         //File2
         String filePath = "./.gitignore";
         File file = new File(filePath);
@@ -62,6 +65,11 @@ public class MainFile {
         } catch(IOException e) {
             throw new RuntimeException("Error", e);
         }
+        System.out.println();
+        //*****************************
+        //File3
+        printDirectory(dir);
+
         //*****************************
         //AutoCloseable
         class X implements AutoCloseable {
@@ -84,6 +92,19 @@ public class MainFile {
             System.err.println("catch");
         } finally {
             System.err.println("finally");
+        }
+
+
+    }
+
+    public static void findFiles(File file, FileFilter filter, PrintStream output) throws IOException {
+        if(file.isDirectory()) {
+            File[] list = file.listFiles();
+            for(int i = list.length; --i >= 0; ) {
+                findFiles(list[i], filter, output);
+            }
+        } else {
+            if(filter.accept(file)) output.println("\t" + file.getCanonicalPath());
         }
     }
 }

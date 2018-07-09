@@ -2,21 +2,21 @@ package com.basejava.webapp;
 
 import com.basejava.webapp.model.SectionType;
 
-public class TestSingleton {
-    private static TestSingleton instance;
+public class MainSingleton {
+    private static MainSingleton instance;
 
-    public static TestSingleton getInstance() {
+    public static MainSingleton getInstance() {
         if(instance == null) {
-            instance = new TestSingleton();
+            instance = new MainSingleton();
         }
         return instance;
     }
 
-    private TestSingleton() {
+    private MainSingleton() {
     }
 
     public static void main(String[] args) {
-        TestSingleton.getInstance().toString();
+        MainSingleton.getInstance().toString();
         Singleton instance = Singleton.valueOf("INSTANCE");
         System.out.println(instance.ordinal());
         for(SectionType type : SectionType.values()) {

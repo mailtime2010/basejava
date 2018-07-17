@@ -31,7 +31,7 @@ public abstract class AbstractPathStorage extends AbstractStorage<Path> {
         try {
             Files.list(directory).forEach(this::doDelete);
         } catch (IOException e) {
-            throw new StorageException("Path delete error", null);
+            throw new StorageException("Path delete error", e);
         }
     }
 
@@ -39,7 +39,7 @@ public abstract class AbstractPathStorage extends AbstractStorage<Path> {
     public int size() {
         String[] list = directory.list();
         if (list == null) {
-            throw new StorageException("Directory read error", null);
+            throw new StorageException("Directory read error");
         }
         return list.length;
     }
@@ -60,7 +60,7 @@ public abstract class AbstractPathStorage extends AbstractStorage<Path> {
 
     @Override
     protected boolean isExist(Path Path) {
-        return Path.exists();
+        return Path.isAbsolute();
     }
 
     @Override
@@ -78,14 +78,14 @@ public abstract class AbstractPathStorage extends AbstractStorage<Path> {
         try {
             return doRead(new BufferedInputStream(new PathInputStream(Path)));
         } catch (IOException e) {
-            throw new StorageException("Path read error", Path.getName(), e);
+            throw new StorageException("Path read error", e);
         }
     }
 
     @Override
     protected void doDelete(Path Path) {
         if (!Path.delete()) {
-            throw new StorageException("Path delete error", Path.getName());
+            throw new StorageException("Path delete error");
         }
     }
 
@@ -93,7 +93,7 @@ public abstract class AbstractPathStorage extends AbstractStorage<Path> {
     protected List<Resume> doCopyAll() {
         Path[] Paths = directory.listPaths();
         if (Paths == null) {
-            throw new StorageException("Directory read error", null);
+            throw new StorageException("Directory read error");
         }
         List<Resume> list = new ArrayList<>(Paths.length);
         for (Path Path : Paths) {

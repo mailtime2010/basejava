@@ -79,6 +79,9 @@ public class Organization implements Serializable {
             this.description = description;
         }
 
+        public Position() {
+        }
+
         public LocalDate getStartDate() {
             return startDate;
         }

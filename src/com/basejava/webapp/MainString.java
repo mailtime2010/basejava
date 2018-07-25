@@ -1,7 +1,6 @@
 package com.basejava.webapp;
 
 public class MainString {
-/*
     public static void main(String[] args) {
         String[] strArray = new String[]{"1", "2", "3", "4", "5"};
 //        String result = "";
@@ -16,5 +15,4 @@ public class MainString {
         String str2 = ("ab" + str3).intern();
         System.out.println(str1 == str2);
     }
-*/
 }

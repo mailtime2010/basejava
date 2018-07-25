@@ -15,9 +15,9 @@ public class MainStrings {
         System.out.printf("%-20s%5s%n", "3. Add comment:", "n -c");
         int base = 5000;
         int d = 20;
-        int p = 1;
+        double p = 0.6;
         header();
-        for(int i = 1; i < 13; i++) {
+        for(int i = 0; i < 12; i++) {
 
             System.out.printf("%-4s", " ");
             System.out.printf("%-10s", base);
@@ -25,7 +25,7 @@ public class MainStrings {
             System.out.printf("%-10s", i2);
             int i3 = thirdStep(i2, d);
             System.out.printf("%-8s", i3);
-            int i4 = throughStep(i);
+            int i4 = throughStep(i3);
             System.out.printf("%-8s", i4);
             base = fifthStep(base, i2);
             System.out.print(base);
@@ -40,7 +40,7 @@ public class MainStrings {
     }
 
     private static int throughStep(int loop) {
-        return loop + 1;
+      return  loop/300;
     }
 
     private static int thirdStep(int secondStep, int d) {

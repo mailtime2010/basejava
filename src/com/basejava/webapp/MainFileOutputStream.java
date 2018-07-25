@@ -7,9 +7,13 @@ import java.io.IOException;
 
 public class MainFileOutputStream {
     public static void main(String[] args) {
-        String sourse = "Now is time for all good man\n" + "to come to the aid of their country\n" + "and play their due taxes.";
+        String sourse = "Now is time for all good man\n" +
+                "to come to the aid of their country\n" +
+                "and play their due taxes.";
         byte buf[] = sourse.getBytes();
-        try(FileOutputStream f0 = new FileOutputStream("f:\\F1111.txt"); FileOutputStream f1 = new FileOutputStream("f:\\F2222.txt"); FileOutputStream f2 = new FileOutputStream("f:\\F3333.txt");) {
+        try(FileOutputStream f0 = new FileOutputStream("f:\\F1111.txt");
+            FileOutputStream f1 = new FileOutputStream("f:\\F2222.txt");
+            FileOutputStream f2 = new FileOutputStream("f:\\F3333.txt");) {
             //write data to first file
             for(int i = 0; i < buf.length; i += 2) {
                 f0.write(buf[i]);

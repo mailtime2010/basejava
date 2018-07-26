@@ -2,7 +2,7 @@ package com.basejava.webapp;
 
 import java.io.ByteArrayInputStream;
 
-public class MainArrayInputStreamReset {
+public class MainByteArrayInputStreamReset {
     public static void main(String[] args) {
         String tmp = "abc";
         byte b[] = tmp.getBytes();

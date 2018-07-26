@@ -4,7 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class MainArrayOutputStream {
+public class MainByteArrayOutputStream {
     public static void main(String[] args) {
         ByteArrayOutputStream f = new ByteArrayOutputStream();
         String s = "This data must be in array. ";

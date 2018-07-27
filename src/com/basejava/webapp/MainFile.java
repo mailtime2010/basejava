@@ -8,42 +8,18 @@ public class MainFile {
         if(files != null) {
             for(File file : files) {
                 if(file.isFile()) {
-                    System.out.println( offset + "File: " + file.getName());
+                    System.out.println(offset + "File: " + file.getName());
                 } else if(file.isDirectory()) {
                     System.out.println(offset + "Directory: " + file.getName());
-                    printDirectory(file, offset+ "  ");
+                    printDirectory(file, offset + "  ");
                 }
             }
         }
     }
 
     public static void main(String[] args) {
-        //*****************************
-        //File1
-        class NameFilter implements FileFilter {
-            private String mask;
-
-            NameFilter(String mask) {
-                this.mask = mask;
-            }
-
-            @Override
-            public boolean accept(File file) {
-                return file.getName().contains(mask);
-            }
-        }
-        File pathFile = new File(".");
-        String filterString = ".java";
-        try {
-            FileFilter filter = new NameFilter(filterString);
-            findFiles(pathFile, filter, System.out);
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println("work finished");
-        System.out.println();
         // *****************************
-        //File2
+        //File1
         String filePath = "./.gitignore";
         File file = new File(filePath);
         try {
@@ -66,14 +42,32 @@ public class MainFile {
             throw new RuntimeException("Error", e);
         }
         System.out.println();
-        //*****************************
-        //File3
+
         printDirectory(dir, "");
+        System.out.println();
+        //File2
+        class NameFilter implements FileFilter {
+            private String mask;
 
-        //*****************************
-        //AutoCloseable
+            NameFilter(String mask) {
+                this.mask = mask;
+            }
 
-
+            @Override
+            public boolean accept(File file) {
+                return file.getName().contains(mask);
+            }
+        }
+        File pathFile = new File(".");
+        String filterString = ".java";
+        try {
+            FileFilter filter = new NameFilter(filterString);
+            findFiles(pathFile, filter, System.out);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("work finished");
+        System.out.println();
     }
 
     public static void findFiles(File file, FileFilter filter, PrintStream output) throws IOException {

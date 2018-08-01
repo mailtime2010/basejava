@@ -9,5 +9,14 @@ public class MainThreadCurrency {
                 System.out.println(getName());
             }
         }.start();
+        //start second way Thread is better
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //don't work cause the cod inside Runnable(have not method getName) not in Thread
+//                System.out.println(getName());
+
+            }
+        });
     }
 }

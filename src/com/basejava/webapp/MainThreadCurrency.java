@@ -19,6 +19,6 @@ public class MainThreadCurrency {
                 System.out.println(Thread.currentThread().getName());
 
             }
-        });
+        }).start();
     }
 }

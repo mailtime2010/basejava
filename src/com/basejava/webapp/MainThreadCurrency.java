@@ -15,6 +15,8 @@ public class MainThreadCurrency {
             public void run() {
                 //don't work cause the cod inside Runnable(have not method getName) not in Thread
 //                System.out.println(getName());
+                //Right way. take current Thread and take getName
+                System.out.println(Thread.currentThread().getName());
 
             }
         });

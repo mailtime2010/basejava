@@ -15,7 +15,7 @@ public class MainConCurrency {
             @Override
             public void run() {
                 System.out.println(getName() + ", " + getState());
-                throw new IllegalStateException();
+       //         throw new IllegalStateException();
             }
         };
         thread0.start();

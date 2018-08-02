@@ -24,9 +24,11 @@ public class MainThreadCurrency {
         System.out.println(thread0.getState());
         // out 1 000 000 in one thread app
         for(int i = 0; i < 10000; i++) {
-            for(int j = 0; j < 100; j++) {
-                counter++;
-            }
+            new Thread(() -> {// create 10 000 threads(but.. 999468)
+                for(int j = 0; j < 100; j++) {
+                    counter++;
+                }
+            }).start();
         }
         System.out.println(counter);
     }

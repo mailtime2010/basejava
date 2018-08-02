@@ -16,7 +16,7 @@ public class MainThreadCurrency {
         //start second way Thread is better
         new Thread(() -> {
             //don't work cause the cod inside Runnable(have not method getName) not in Thread
-             //   System.out.println(getName());
+            //   System.out.println(getName());
             //Right way. take current Thread and take getName
             System.out.println(Thread.currentThread().getName() + " " + Thread.currentThread().getState());
 
@@ -24,12 +24,16 @@ public class MainThreadCurrency {
         System.out.println(thread0.getState());
         // out 1 000 000 in one thread app
         for(int i = 0; i < 10000; i++) {
-            new Thread(() -> {// create 10 000 threads(but.. 999468)
+            new Thread(() -> {// create 10 000 threads(but.. 999468)cause: all threads works with counter
                 for(int j = 0; j < 100; j++) {
-                    counter++;
+                    inc();//change variable to function
                 }
             }).start();
         }
         System.out.println(counter);
+    }
+
+    private static void inc() {//change variable to function
+        counter++;
     }
 }

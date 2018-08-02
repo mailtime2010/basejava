@@ -3,7 +3,7 @@ package com.basejava.webapp;
 public class MainThreadCurrency {
     private static int counter;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         System.out.println(Thread.currentThread().getName());
 
         Thread thread0 = new Thread() {
@@ -30,6 +30,7 @@ public class MainThreadCurrency {
                 }
             }).start();
         }
+        Thread.sleep(500);
         System.out.println(counter);
     }
     //synchronized only one thread can enter in inc(99990)cause: threads work after sout(counter)

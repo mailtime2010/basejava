@@ -23,10 +23,11 @@ public class MainThreadCurrency {
         }).start();//lambda
         System.out.println(thread0.getState());
         // out 1 000 000 in one thread app
+        Object lock = new Object();
         for(int i = 0; i < 10000; i++) {
             new Thread(() -> {// create 10 000 threads(but.. 999468)cause: all threads works with counter
                 for(int j = 0; j < 100; j++) {
-                    inc();//change variable to function
+                    inc(lock);//make one queue
                 }
             }).start();
         }
@@ -39,9 +40,8 @@ public class MainThreadCurrency {
         counter++;
     }*/
    //the part of function have synchronized - 988106
-   private static void inc(){
+   private static void inc(Object lock){
        double d = Math.cos(25.);
-       Object lock = new Object();//mistake 10000 threads and Objects. 10000 query not one
        synchronized(lock){
            counter++;
        }

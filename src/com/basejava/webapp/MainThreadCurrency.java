@@ -41,7 +41,7 @@ public class MainThreadCurrency {
    //the part of function have synchronized - 988106
    private static void inc(){
        double d = Math.cos(25.);
-       Object lock = new Object();
+       Object lock = new Object();//mistake 10000 threads and Objects. 10000 query not one
        synchronized(lock){
            counter++;
        }

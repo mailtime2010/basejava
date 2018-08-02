@@ -34,7 +34,16 @@ public class MainThreadCurrency {
         System.out.println(counter);
     }
     //synchronized only one thread can enter in inc(99990)cause: threads work after sout(counter)
-    private static synchronized void inc() {
+    //full function synchronized
+   /* private static synchronized void inc() {
         counter++;
-    }
+    }*/
+   //the part of function have synchronized - 988106
+   private static void inc(){
+       double d = Math.cos(25.);
+       Object lock = new Object();
+       synchronized(lock){
+           counter++;
+       }
+   }
 }

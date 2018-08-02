@@ -2,6 +2,7 @@ package com.basejava.webapp;
 
 public class MainThreadCurrency {
     private static int counter;
+    public static final Object LOCK = new Object();
 
     public static void main(String[] args) throws InterruptedException {
         System.out.println(Thread.currentThread().getName());
@@ -23,11 +24,10 @@ public class MainThreadCurrency {
         }).start();//lambda
         System.out.println(thread0.getState());
         // out 1 000 000 in one thread app
-        Object lock = new Object();
         for(int i = 0; i < 10000; i++) {
             new Thread(() -> {// create 10 000 threads(but.. 999468)cause: all threads works with counter
                 for(int j = 0; j < 100; j++) {
-                    inc(lock);//make one queue
+                    inc();//make one queue
                 }
             }).start();
         }
@@ -40,9 +40,9 @@ public class MainThreadCurrency {
         counter++;
     }*/
    //the part of function have synchronized - 988106
-   private static void inc(Object lock){
+   private static void inc(){
        double d = Math.cos(25.);
-       synchronized(lock){
+       synchronized(LOCK){
            counter++;
        }
    }

@@ -24,11 +24,11 @@ public class MainThreadCurrency {
         }).start();//lambda
         System.out.println(thread0.getState());
         // out 1 000 000 in one thread app
-        final MainThreadCurrency mainConCurrency = new MainThreadCurrency();
+        final MainThreadCurrency mainThreadCurrency = new MainThreadCurrency();
         for(int i = 0; i < 10000; i++) {
             new Thread(() -> {// create 10 000 threads(but.. 999468)cause: all threads works with counter
                 for(int j = 0; j < 100; j++) {
-                    mainConCurrency.inc();//make one queue
+                    mainThreadCurrency.inc();//make one queue
                 }
             }).start();
         }
@@ -49,12 +49,12 @@ public class MainThreadCurrency {
             counter++;
         }*/
 
-    private synchronized void inc() {
+    private void inc() {
         //synchronized(this){
-        //synchronized(MainConCurrency.class) {
+        //synchronized(MainThreadCurrency.class) {
         double d = Math.cos(24.);
-        //synchronized(LOCK) {
+        synchronized(this) {
         counter++;
-        // }
+         }
     }
 }

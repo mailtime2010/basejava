@@ -33,7 +33,7 @@ public class MainThreadCurrency {
         System.out.println(counter);
     }
 
-    private static void inc() {//change variable to function
+    private static synchronized void inc() {//synchronized only one thread can enter in inc()
         counter++;
     }
 }

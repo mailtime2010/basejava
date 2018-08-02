@@ -32,8 +32,8 @@ public class MainThreadCurrency {
         }
         System.out.println(counter);
     }
-
-    private static synchronized void inc() {//synchronized only one thread can enter in inc()
+    //synchronized only one thread can enter in inc(99990)cause: threads work after sout(counter)
+    private static synchronized void inc() {
         counter++;
     }
 }

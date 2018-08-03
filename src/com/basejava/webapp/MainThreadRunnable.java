@@ -1,13 +1,14 @@
 package com.basejava.webapp;
 
-public class MainThreadRunnable{
+public class MainThreadRunnable {
     public static void main(String[] args) {
         new NewThread();
 
         try {
-            for (int i = 5; i >0 ; i--){
+            for(int i = 5; i > 0; i--) {
                 System.out.println("Главный поток: " + i);
                 Thread.sleep(1000);
+
             }
         } catch(InterruptedException e) {
             System.out.println("Главный поток прерван.");
@@ -16,11 +17,11 @@ public class MainThreadRunnable{
 
     }
 }
-class NewThread implements Runnable {
 
+class NewThread implements Runnable {
     Thread t;
 
-    public NewThread() {
+    NewThread() {
         t = new Thread(this, "Демонстрационный поток");
         System.out.println("Дочерний поток создан: " + t);
         t.start();

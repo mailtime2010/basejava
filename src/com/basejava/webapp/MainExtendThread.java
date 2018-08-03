@@ -6,7 +6,7 @@ public class MainExtendThread {
         try {
             for(int i = 5; i > 0; i--) {
                 System.out.println("Главный поток: " + i);
-                Thread.sleep(1000);
+                Thread.sleep(1001);
             }
         } catch(InterruptedException e) {
             System.out.println("Главный поток прерван.");
@@ -28,7 +28,7 @@ class NowThread extends Thread {
         try {
             for(int i = 5; i > 0; i--) {
                 System.out.println("Дочерний поток: " + i);
-                Thread.sleep(500);
+                Thread.sleep(1000);
             }
         } catch(InterruptedException e) {
             System.out.println("Дочерний поток прерван.");

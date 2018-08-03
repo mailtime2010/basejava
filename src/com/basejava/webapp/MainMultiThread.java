@@ -12,7 +12,7 @@ public class MainMultiThread {
         } catch(InterruptedException e) {
             System.out.println("Главный поток: " + Thread.currentThread().getName() + " прерван");
         }
-        System.out.println("Главный поток: " + Thread.currentThread().getName()+ " завершен");
+        System.out.println("Главный поток: " + Thread.currentThread().getName() + " завершен");
     }
 
     static class OneThread implements Runnable {

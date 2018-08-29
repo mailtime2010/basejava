@@ -1,5 +1,6 @@
 package com.basejava.webapp.model;
 
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import java.io.Serializable;
@@ -12,13 +13,13 @@ public class Link implements Serializable {
     private String name;
     private String url;
 
+    public Link() {
+    }
+
     public Link(String name, String url) {
         Objects.requireNonNull(name, "name must not be null");
         this.name = name;
-        this.url = url;
-    }
-
-    public Link() {
+        this.url = url == null ? "" : url;
     }
 
     public String getName() {

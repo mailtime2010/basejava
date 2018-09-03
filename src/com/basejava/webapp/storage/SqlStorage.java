@@ -67,14 +67,14 @@ public class SqlStorage implements Storage {
             ps.setString(1, r.getUuid());
             ps.setString(2, r.getFullName());
             ps.execute();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new StorageException(e);
         }
     }
 
     @Override
     public void delete(String uuid) {
-
+//
     }
 
     @Override

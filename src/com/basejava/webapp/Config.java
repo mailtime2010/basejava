@@ -10,7 +10,6 @@ public class Config {
     private static final File PROPS = new File("config/resumes.properties");
     private static final Config INSTANCE = new Config();
 
-    private Properties properties = new Properties();
     private File storageDir;
 
     public static Config getInstance() {
@@ -19,6 +18,7 @@ public class Config {
 
     private Config() {
         try (InputStream is = new FileInputStream(PROPS)) {
+            Properties properties = new Properties();
             properties.load(is);
             storageDir = new File(properties.getProperty("storage.dir"));
         } catch (IOException e) {
